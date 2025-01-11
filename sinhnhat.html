@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinh Nhật Diệu Anh</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            background: #ff6b81;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #ff4757;
+        }
+        .heart {
+            font-size: 4rem;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .letter {
+            display: none;
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            z-index: 1000;
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        .letter.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .close-btn {
+            margin-top: 15px;
+            padding: 10px;
+            background: #ff6b81;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chúc Mừng Sinh Nhật Diệu Anh! 🎉</h1>
+        <p>Chúc bạn có một ngày thật tuyệt vời và tràn đầy niềm vui!</p>
+        <p class="heart">❤️</p>
+        <button class="btn" onclick="showLetter()">Nhấn để nhận lời chúc!</button>
+    </div>
+
+    <div class="letter" id="birthdayLetter">
+        <p id="letterText"></p>
+        <button class="close-btn" onclick="closeLetter()">Đóng</button>
+    </div>
+
+    <script>
+        const message = "Hôm nay không phải là ngày hôm qua, hôm nay là ngày đặc biệt, là ngày mà một thiên thần đáng yêu đã sinh ra. Hãy luôn mỉm cười thì may mắn sẽ tới nhé bạn.";
+
+        function showLetter() {
+            var letter = document.getElementById('birthdayLetter');
+            var letterText = document.getElementById('letterText');
+            letterText.innerHTML = "";
+            letter.style.display = 'block';
+            setTimeout(() => letter.classList.add('show'), 50);
+            let i = 0;
+            function typeWriter() {
+                if (i < message.length) {
+                    letterText.innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            typeWriter();
+        }
+
+        function closeLetter() {
+            var letter = document.getElementById('birthdayLetter');
+            letter.classList.remove('show');
+            setTimeout(() => letter.style.display = 'none', 500);
+        }
+    </script>
+</body>
+</html>
